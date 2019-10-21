@@ -143,8 +143,13 @@ static const NSUInteger kExpiryTimeTolerance = 60;
                                // if the request is for the code flow (NB. not hybrid), assumes the
                                // code is intended for this client, and performs the authorization
                                // code exchange
+                               
+                               // パラメータを引き継ぐように変更
+                               NSDictionary<NSString *, NSString *> *_params =
+                                    authorizationResponse.request.additionalParameters;
                                OIDTokenRequest *tokenExchangeRequest =
-                                   [authorizationResponse tokenExchangeRequest];
+                                   [authorizationResponse tokenExchangeRequestWithAdditionalParameters:_params];
+
                                [OIDAuthorizationService performTokenRequest:tokenExchangeRequest
                                               originalAuthorizationResponse:authorizationResponse
                                    callback:^(OIDTokenResponse *_Nullable tokenResponse,

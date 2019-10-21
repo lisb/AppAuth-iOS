@@ -122,9 +122,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)resumeExternalUserAgentFlowWithURL:(NSURL *)URL {
   // rejects URLs that don't match redirect (these may be completely unrelated to the authorization)
-  if (![self shouldHandleURL:URL]) {
-    return NO;
-  }
+
+// redirect 先に custom url scheme が禁止されているため、一旦別URLにredirectしてから custom url scheme を呼んでいる
+// その都合上、shuldHnaldURLが false を返すためコメントアウト
+//  if (![self shouldHandleURL:URL]) {
+//    return NO;
+//  }
   
   AppAuthRequestTrace(@"Authorization Response: %@", URL);
   

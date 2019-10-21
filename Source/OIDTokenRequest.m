@@ -269,7 +269,9 @@ static NSString *const kAdditionalParametersKey = @"additionalParameters";
   NSURL *tokenRequestURL = [self tokenRequestURL];
   NSMutableURLRequest *URLRequest = [[NSURLRequest requestWithURL:tokenRequestURL] mutableCopy];
   URLRequest.HTTPMethod = kHTTPPost;
-  [URLRequest setValue:kHTTPContentTypeHeaderValue forHTTPHeaderField:kHTTPContentTypeHeaderKey];
+  
+  // application/x-www-form-urlencoded ヘッダに対応していない・・・ようだ・・・
+//  [URLRequest setValue:kHTTPContentTypeHeaderValue forHTTPHeaderField:kHTTPContentTypeHeaderKey];
 
   OIDURLQueryComponent *bodyParameters = [self tokenRequestBody];
   NSMutableDictionary *httpHeaders = [[NSMutableDictionary alloc] init];
